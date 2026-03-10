@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ChefAI – Personalized Recipe Generator</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=DM+Sans:wght@300;400;500;600&family=Crimson+Pro:ital@1&display=swap" rel="stylesheet"/>
+</head>
+<body>
+
+  <!-- Hero Header -->
+  <header class="hero">
+    <div class="hero-bg">
+      <div class="blob blob1"></div>
+      <div class="blob blob2"></div>
+      <div class="blob blob3"></div>
+    </div>
+    <nav class="nav">
+      <div class="logo">🍽️ ChefAI</div>
+      <div class="nav-links">
+        <a href="#generator">Generate</a>
+        <a href="#examples">Examples</a>
+        <a href="#how-it-works">How It Works</a>
+      </div>
+    </nav>
+    <div class="hero-content">
+      <span class="hero-badge">✦ AI-Powered Cooking</span>
+      <h1>Turn Your <em>Ingredients</em><br/>Into Masterpieces</h1>
+      <p class="hero-sub">Enter what you have. Tell us your diet. Get a unique, personalized recipe crafted by AI — tailored just for you.</p>
+      <a href="#generator" class="cta-btn">Start Cooking <span>→</span></a>
+    </div>
+    <div class="scroll-hint">↓ Scroll to generate</div>
+  </header>
+
+  <!-- Main Generator Section -->
+  <section id="generator" class="section generator-section">
+    <div class="section-label">✦ RECIPE GENERATOR</div>
+    <h2 class="section-title">What's In Your Kitchen?</h2>
+
+    <div class="generator-grid">
+
+      <!-- Left: Input Panel -->
+      <div class="input-panel card">
+
+        <!-- Ingredient Input -->
+        <div class="field-group">
+          <label class="field-label">🥦 Ingredients Available</label>
+          <div class="ingredient-input-row">
+            <input type="text" id="ingredientInput" class="text-input" placeholder="e.g. chicken, garlic, lemon..."/>
+            <button class="add-btn" id="addIngredientBtn">Add</button>
+          </div>
+          <div class="tag-container" id="ingredientTags"></div>
+          <div class="quick-add">
+            <span class="quick-label">Quick add:</span>
+            <button class="quick-tag" data-val="Chicken">Chicken</button>
+            <button class="quick-tag" data-val="Pasta">Pasta</button>
+            <button class="quick-tag" data-val="Eggs">Eggs</button>
+            <button class="quick-tag" data-val="Tomatoes">Tomatoes</button>
+            <button class="quick-tag" data-val="Garlic">Garlic</button>
+            <button class="quick-tag" data-val="Spinach">Spinach</button>
+            <button class="quick-tag" data-val="Rice">Rice</button>
+            <button class="quick-tag" data-val="Onion">Onion</button>
+          </div>
+        </div>
+
+        <!-- Dietary Preferences -->
+        <div class="field-group">
+          <label class="field-label">🌿 Dietary Preferences</label>
+          <div class="checkbox-grid">
+            <label class="check-item"><input type="checkbox" name="diet" value="Vegan"/> <span>🌱 Vegan</span></label>
+            <label class="check-item"><input type="checkbox" name="diet" value="Vegetarian"/> <span>🥗 Vegetarian</span></label>
+            <label class="check-item"><input type="checkbox" name="diet" value="Gluten-Free"/> <span>🌾 Gluten-Free</span></label>
+            <label class="check-item"><input type="checkbox" name="diet" value="Dairy-Free"/> <span>🥛 Dairy-Free</span></label>
+            <label class="check-item"><input type="checkbox" name="diet" value="Keto"/> <span>🥩 Keto</span></label>
+            <label class="check-item"><input type="checkbox" name="diet" value="Paleo"/> <span>🦴 Paleo</span></label>
+            <label class="check-item"><input type="checkbox" name="diet" value="Low-Carb"/> <span>📉 Low-Carb</span></label>
+            <label class="check-item"><input type="checkbox" name="diet" value="High-Protein"/> <span>💪 High-Protein</span></label>
+          </div>
+        </div>
+
+        <!-- Allergies -->
+        <div class="field-group">
+          <label class="field-label">⚠️ Allergies / Avoid</label>
+          <div class="checkbox-grid">
+            <label class="check-item"><input type="checkbox" name="allergy" value="Nuts"/> <span>🥜 Nuts</span></label>
+            <label class="check-item"><input type="checkbox" name="allergy" value="Shellfish"/> <span>🦐 Shellfish</span></label>
+            <label class="check-item"><input type="checkbox" name="allergy" value="Soy"/> <span>🫘 Soy</span></label>
+            <label class="check-item"><input type="checkbox" name="allergy" value="Eggs"/> <span>🥚 Eggs</span></label>
+            <label class="check-item"><input type="checkbox" name="allergy" value="Lactose"/> <span>🧀 Lactose</span></label>
+            <label class="check-item"><input type="checkbox" name="allergy" value="Wheat"/> <span>🌾 Wheat</span></label>
+          </div>
+        </div>
+
+        <!-- Cuisine -->
+        <div class="field-group">
+          <label class="field-label">🌍 Preferred Cuisine</label>
+          <div class="select-row">
+            <select id="cuisineSelect" class="select-input">
+              <option value="">Any Cuisine</option>
+              <option value="Italian">🇮🇹 Italian</option>
+              <option value="Mexican">🇲🇽 Mexican</option>
+              <option value="Indian">🇮🇳 Indian</option>
+              <option value="Asian">🥢 Asian</option>
+              <option value="Mediterranean">🫒 Mediterranean</option>
+              <option value="American">🇺🇸 American</option>
+              <option value="Middle Eastern">🧆 Middle Eastern</option>
+              <option value="French">🥐 French</option>
+              <option value="Japanese">🍣 Japanese</option>
+              <option value="Thai">🌶️ Thai</option>
+            </select>
+            <select id="mealTypeSelect" class="select-input">
+              <option value="">Any Meal Type</option>
+              <option value="Breakfast">🌅 Breakfast</option>
+              <option value="Lunch">🥙 Lunch</option>
+              <option value="Dinner">🍽️ Dinner</option>
+              <option value="Snack">🍎 Snack</option>
+              <option value="Dessert">🍰 Dessert</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Nutrition Goals -->
+        <div class="field-group">
+          <label class="field-label">🎯 Nutritional Goal</label>
+          <div class="radio-row">
+            <label class="radio-item"><input type="radio" name="goal" value="Balanced" checked/> <span>⚖️ Balanced</span></label>
+            <label class="radio-item"><input type="radio" name="goal" value="Weight Loss"/> <span>🔥 Weight Loss</span></label>
+            <label class="radio-item"><input type="radio" name="goal" value="Muscle Gain"/> <span>💪 Muscle Gain</span></label>
+            <label class="radio-item"><input type="radio" name="goal" value="Energy Boost"/> <span>⚡ Energy Boost</span></label>
+          </div>
+        </div>
+
+        <!-- Cook Time & Servings -->
+        <div class="field-group two-col">
+          <div>
+            <label class="field-label">⏱️ Max Cook Time</label>
+            <select id="cookTimeSelect" class="select-input full">
+              <option value="">No Limit</option>
+              <option value="15 minutes">15 minutes</option>
+              <option value="30 minutes">30 minutes</option>
+              <option value="45 minutes">45 minutes</option>
+              <option value="1 hour">1 hour</option>
+              <option value="1.5+ hours">1.5+ hours</option>
+            </select>
+          </div>
+          <div>
+            <label class="field-label">👥 Servings</label>
+            <select id="servingsSelect" class="select-input full">
+              <option value="1">1 person</option>
+              <option value="2" selected>2 people</option>
+              <option value="4">4 people</option>
+              <option value="6">6 people</option>
+              <option value="8">8+ people</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Skill Level -->
+        <div class="field-group">
+          <label class="field-label">👨‍🍳 Cooking Skill Level</label>
+          <div class="skill-slider-wrap">
+            <input type="range" id="skillSlider" min="1" max="3" value="2" class="skill-slider"/>
+            <div class="skill-labels">
+              <span>Beginner</span>
+              <span>Intermediate</span>
+              <span>Advanced</span>
+            </div>
+          </div>
+        </div>
+
+        <button class="generate-btn" id="generateBtn">
+          <span class="btn-icon">✨</span>
+          <span class="btn-text">Generate My Recipe</span>
+          <span class="btn-loader" id="btnLoader" style="display:none">⏳</span>
+        </button>
+
+      </div><!-- end input-panel -->
+
+      <!-- Right: Recipe Output -->
+      <div class="output-panel" id="outputPanel">
+        <div class="output-placeholder" id="outputPlaceholder">
+          <div class="placeholder-icon">🍳</div>
+          <p>Your personalized recipe will appear here.</p>
+          <p class="placeholder-sub">Add some ingredients and click <strong>Generate My Recipe</strong></p>
+        </div>
+        <div class="recipe-card card" id="recipeCard" style="display:none">
+          <div class="recipe-header">
+            <div class="recipe-badges" id="recipeBadges"></div>
+            <h3 class="recipe-title" id="recipeTitle"></h3>
+            <p class="recipe-desc" id="recipeDesc"></p>
+            <div class="recipe-meta" id="recipeMeta"></div>
+          </div>
+          <div class="recipe-body">
+            <div class="recipe-section">
+              <h4>🧂 Ingredients</h4>
+              <ul class="ingredient-list" id="recipeIngredients"></ul>
+            </div>
+            <div class="recipe-section">
+              <h4>📋 Instructions</h4>
+              <ol class="steps-list" id="recipeSteps"></ol>
+            </div>
+            <div class="recipe-section nutrition-section">
+              <h4>📊 Nutrition Estimate (per serving)</h4>
+              <div class="nutrition-grid" id="nutritionGrid"></div>
+            </div>
+            <div class="recipe-section">
+              <h4>💡 Chef's Tips</h4>
+              <div class="tips-box" id="recipeTips"></div>
+            </div>
+          </div>
+          <div class="recipe-footer">
+            <button class="action-btn" id="regenerateBtn">🔄 Regenerate</button>
+            <button class="action-btn" id="saveBtn">💾 Save Recipe</button>
+            <button class="action-btn" id="printBtn">🖨️ Print</button>
+          </div>
+        </div>
+      </div><!-- end output-panel -->
+
+    </div><!-- end generator-grid -->
+  </section>
+
+  <!-- Example Recipes Section -->
+  <section id="examples" class="section examples-section">
+    <div class="section-label">✦ SAMPLE RESULTS</div>
+    <h2 class="section-title">See What Others Generated</h2>
+    <p class="section-sub">These are real outputs from ChefAI based on different preferences and ingredient combinations.</p>
+
+    <div class="examples-grid">
+      <div class="example-card card" data-ingredients="chicken,garlic,lemon,rosemary,olive oil" data-diet="Gluten-Free,High-Protein" data-cuisine="Mediterranean" data-goal="Muscle Gain">
+        <div class="example-img" style="background: linear-gradient(135deg,#f6a623,#e05a00)">🍗</div>
+        <div class="example-info">
+          <div class="example-tags"><span class="etag">Gluten-Free</span><span class="etag">High-Protein</span></div>
+          <h4>Lemon Rosemary Chicken</h4>
+          <p>Mediterranean-style grilled chicken with fresh herbs and garlic infusion</p>
+          <div class="example-meta">⏱ 30 min · 🍽 2 servings · 💪 Muscle Gain</div>
+          <button class="try-btn" onclick="loadExample(this)">Try This →</button>
+        </div>
+      </div>
+
+      <div class="example-card card" data-ingredients="tofu,spinach,chickpeas,cumin,turmeric,coconut milk" data-diet="Vegan,Gluten-Free" data-cuisine="Indian" data-goal="Balanced">
+        <div class="example-img" style="background: linear-gradient(135deg,#56ab2f,#a8e063)">🥗</div>
+        <div class="example-info">
+          <div class="example-tags"><span class="etag">Vegan</span><span class="etag">Gluten-Free</span></div>
+          <h4>Spiced Chickpea & Tofu Curry</h4>
+          <p>Creamy Indian-inspired curry with warming spices and coconut milk base</p>
+          <div class="example-meta">⏱ 25 min · 🍽 4 servings · ⚖️ Balanced</div>
+          <button class="try-btn" onclick="loadExample(this)">Try This →</button>
+        </div>
+      </div>
+
+      <div class="example-card card" data-ingredients="eggs,cheese,mushrooms,bell pepper,onion" data-diet="Vegetarian,Low-Carb" data-cuisine="French" data-goal="Weight Loss">
+        <div class="example-img" style="background: linear-gradient(135deg,#f7971e,#ffd200)">🍳</div>
+        <div class="example-info">
+          <div class="example-tags"><span class="etag">Vegetarian</span><span class="etag">Low-Carb</span></div>
+          <h4>Mushroom & Pepper Frittata</h4>
+          <p>French-inspired fluffy egg bake loaded with colorful vegetables and melted cheese</p>
+          <div class="example-meta">⏱ 20 min · 🍽 2 servings · 🔥 Weight Loss</div>
+          <button class="try-btn" onclick="loadExample(this)">Try This →</button>
+        </div>
+      </div>
+
+      <div class="example-card card" data-ingredients="salmon,avocado,cucumber,rice,nori,soy sauce" data-diet="Dairy-Free,High-Protein" data-cuisine="Japanese" data-goal="Energy Boost">
+        <div class="example-img" style="background: linear-gradient(135deg,#1a6dff,#c822ff)">🍣</div>
+        <div class="example-info">
+          <div class="example-tags"><span class="etag">Dairy-Free</span><span class="etag">High-Protein</span></div>
+          <h4>Salmon Avocado Sushi Bowl</h4>
+          <p>Deconstructed sushi bowl with fresh salmon, creamy avocado, and umami dressing</p>
+          <div class="example-meta">⏱ 15 min · 🍽 1 serving · ⚡ Energy Boost</div>
+          <button class="try-btn" onclick="loadExample(this)">Try This →</button>
+        </div>
+      </div>
+
+      <div class="example-card card" data-ingredients="ground beef,tomatoes,kidney beans,chili powder,cumin,onion" data-diet="Gluten-Free" data-cuisine="Mexican" data-goal="Balanced">
+        <div class="example-img" style="background: linear-gradient(135deg,#c0392b,#e74c3c)">🌶️</div>
+        <div class="example-info">
+          <div class="example-tags"><span class="etag">Gluten-Free</span><span class="etag">High-Protein</span></div>
+          <h4>Classic Beef Chili</h4>
+          <p>Hearty Mexican-style chili with smoky spices, tender beef, and rich tomato base</p>
+          <div class="example-meta">⏱ 45 min · 🍽 6 servings · ⚖️ Balanced</div>
+          <button class="try-btn" onclick="loadExample(this)">Try This →</button>
+        </div>
+      </div>
+
+      <div class="example-card card" data-ingredients="banana,oats,almond butter,honey,chia seeds,almond milk" data-diet="Vegan,Gluten-Free" data-cuisine="American" data-goal="Energy Boost">
+        <div class="example-img" style="background: linear-gradient(135deg,#f9d423,#ff4e50)">🥣</div>
+        <div class="example-info">
+          <div class="example-tags"><span class="etag">Vegan</span><span class="etag">Gluten-Free</span></div>
+          <h4>Power Overnight Oats</h4>
+          <p>Energizing breakfast bowl with banana, nut butter, and superfood chia seeds</p>
+          <div class="example-meta">⏱ 5 min · 🍽 1 serving · ⚡ Energy Boost</div>
+          <button class="try-btn" onclick="loadExample(this)">Try This →</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How It Works Section -->
+  <section id="how-it-works" class="section hiw-section">
+    <div class="section-label">✦ TECHNOLOGY</div>
+    <h2 class="section-title">How ChefAI Works</h2>
+    <p class="section-sub">ChefAI uses advanced language AI combined with nutrition science to craft recipes tailored to you.</p>
+
+    <div class="hiw-grid">
+      <div class="hiw-card card">
+        <div class="hiw-icon">🧠</div>
+        <h4>Large Language Model (LLM)</h4>
+        <p>ChefAI uses Claude, an advanced large language model trained on millions of recipes, culinary techniques, and food science data. It understands ingredient pairings, cooking chemistry, and cultural context to produce coherent, delicious recipes from scratch.</p>
+      </div>
+      <div class="hiw-card card">
+        <div class="hiw-icon">🎛️</div>
+        <h4>Preference-Conditioned Prompting</h4>
+        <p>Your inputs (ingredients, diet, allergies, cuisine, skill level) are converted into a structured prompt. The AI uses these as constraints to generate recipes that strictly respect your lifestyle — ensuring vegan, gluten-free, or keto compliance automatically.</p>
+      </div>
+      <div class="hiw-card card">
+        <div class="hiw-icon">🥗</div>
+        <h4>Nutritional Optimization</h4>
+        <p>Beyond taste, ChefAI considers your nutritional goals. Whether you're building muscle, losing weight, or maintaining energy, the AI adjusts portion sizes, ingredient ratios, and cooking methods to align with your macro and micronutrient needs.</p>
+      </div>
+      <div class="hiw-card card">
+        <div class="hiw-icon">🔄</div>
+        <h4>Iterative Refinement</h4>
+        <p>Each recipe generation is unique. The AI doesn't just template-fill — it reasons through ingredient compatibility, identifies flavor profiles, balances textures, and applies cooking principles to create something genuinely novel every time you click generate.</p>
+      </div>
+      <div class="hiw-card card">
+        <div class="hiw-icon">🛡️</div>
+        <h4>Allergy-Safe Filtering</h4>
+        <p>Allergy flags are treated as hard constraints in the AI's generation pipeline. The model is instructed to avoid all derivatives and hidden forms of allergens (e.g., wheat starch, casein from dairy), keeping your recipe not just personalized but safe.</p>
+      </div>
+      <div class="hiw-card card">
+        <div class="hiw-icon">🌍</div>
+        <h4>Cultural & Culinary Intelligence</h4>
+        <p>ChefAI has deep knowledge of global cuisine traditions. When you select Italian or Thai, it adapts spice profiles, cooking techniques, and presentation styles authentically — not just surface-level labels, but genuine culinary character.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Saved Recipes -->
+  <section id="saved" class="section saved-section" style="display:none">
+    <div class="section-label">✦ YOUR COOKBOOK</div>
+    <h2 class="section-title">Saved Recipes</h2>
+    <div class="saved-grid" id="savedGrid"></div>
+  </section>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-logo">🍽️ ChefAI</div>
+      <p>Personalized recipes powered by AI. Cook smarter, eat better.</p>
+      <p class="footer-note">Recipes are AI-generated suggestions. Always verify ingredients for your dietary needs.</p>
+    </div>
+  </footer>
+
+  <div class="toast" id="toast"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>
